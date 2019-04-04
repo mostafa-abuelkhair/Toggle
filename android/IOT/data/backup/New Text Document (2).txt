@@ -1,0 +1,119 @@
+"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\
+<html>\
+ \
+<head>\
+ <script>\
+  var r1="+String(r[1])+",r2="+String(r[2])+",r3="+String(r[3])+",r4="+String(r[4])+",r5="+String(r[5])+",r6="+String(r[6])+",r7="+String(r[7])+",r8="+String(r[8])+",ser="+String(ser)+";\
+ </script>\
+ <style>.icono-volumeHigh:after{border:2px solid}.icono-volumeHigh:before{border:2px solid}\
+ .icono-volumeHigh:after,.icono-volumeHigh:before{position:absolute;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}\
+   .icono-volumeHigh{width:0;height:0;border:7px solid;border-left:none;border-top-color:transparent;border-bottom-color:transparent;padding:6px 3px;box-shadow:inset 4px 0;margin:4px 10px 4px 11px}\
+  .icono-volumeHigh{margin:4px 18px 4px 3px}\
+  .icono-volumeHigh:after,.icono-volumeHigh:before{width:15px;height:15px;position:absolute;border-radius:50%;border-top-color:transparent;border-bottom-color:transparent;border-left-color:transparent;left:2px;margin:4px 16px 4px 5px}\
+ icono-volumeHigh:before{border-style:double;border-width:6px;left:-2px}\
+ .icono-volumeHigh{margin:4px 18px 4px 3px}.icono-volumeHigh:after{width:32px;height:32px;left:-7px}\
+  .swh{width :320px;margin: auto;margin-top: 10px;}\
+        .swhd{border: 3px solid white;width: 100px;cursor: pointer;display: inline;margin-left: 100px;}\
+       .son{ background: #99ffcc;width: 50%;}.soff{ background:  #ff6666;width: 50%;}\
+</style>\
+</head>\
+<body style=\"background: #bfbfbf;\">\
+ \
+ <div style=\"background:#ffd966;font-size: 20px;text-align: center;margin: auto;margin-top: 10px;cursor: pointer; \" onclick=\"location.replace('http://"+ip.toString()+"/temp');\">Temprature Sensor Setting</div>\
+<div style=\"background:#ffff66;font-size: 20px;text-align: center;margin: auto;margin-top: 10px;cursor: pointer; \" onclick=\"location.replace('http://"+ip.toString()+"/smoke');\">Smoke Sensor Setting</div>\
+<div style=\"background:#b3ff66;font-size: 20px;text-align: center;margin: auto;margin-top: 10px; cursor: pointer; \" onclick=\"location.replace('http://"+ip.toString()+"/knock');\">Vibration Sensor Setting</div>\
+\
+ <div style=\"font-size: 30px;text-align: center;margin-top: 30px; \">\
+<div class=\"swh\"><span style=\"display: inline;\">Switch 1 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r1');\"><span class=\"son\" id=\"n1\">ON</span><span class=\"soff\" id=\"f1\">OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 2 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r2');\"><span class=\"son\" id=\"n2\" >ON</span><span class=\"soff\" id=\"f2\" >OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 3 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r3');\"><span class=\"son\" id=\"n3\">ON</span><span class=\"soff\" id=\"f3\">OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 4 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r4');\"><span class=\"son\"id=\"n4\">ON</span><span class=\"soff\" id=\"f4\">OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 5 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r5');\"><span class=\"son\" id=\"n5\">ON</span><span class=\"soff\" id=\"f5\" >OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 6 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r6');\"><span class=\"son\" id=\"n6\">ON</span><span class=\"soff\" id=\"f6\">OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 7 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r7');\"><span class=\"son\" id=\"n7\">ON</span><span class=\"soff\" id=\"f7\">OFF</span></div></div>\
+ <div class=\"swh\"><span style=\"display: inline;\">Switch 8 </span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r8');\"><span class=\"son\" id=\"n8\">ON</span><span class=\"soff\" id=\"f8\">OFF</span></div></div>\
+ </div>\
+ <div style=\"margin: auto;margin-top: 50px;cursor: pointer;width: 130px;color: #4c4ce6;font-size: 30px;\" id=\"ser\" onclick=\"location.replace('http://"+ip.toString()+"/ser');\"><span class=\"icono-volumeHigh\"></span><span>Alarm</span></div>\
+</body>\
+<script>var relay=()=>{\
+ var rx=[r1,r2,r3,r4,r5,r6,r7,r8];\
+ for(i=1;i<=8;i++){\
+ var on =document.getElementById('n'+i);var off =document.getElementById('f'+i);\
+ if(rx[(i-1)]==0){ on.style.visibility='hidden' ;off.style.visibility='visible';}else{off.style.visibility='hidden' ;on.style.visibility='visible';}\
+ }\
+ };\
+ relay();\
+ document.getElementById('ser').style.color=ser==0? '#4c4ce6':'red';\
+ </script>\
+</html>"; 
+  return fs;
+  }
+
+  String p2(int psr[],int psn,int pv,String sens ,int rd){
+  String fs ="HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\
+<html>\
+ \
+<head>\
+    <script>var sr1="+String(psr[1])+",sr2="+String(psr[2])+",sr3="+String(psr[3])+",sr4="+String(psr[4])+",sr5="+String(psr[5])+",sr6="+String(psr[6])+",sr7="+String(psr[7])+",sr8="+String(psr[1])+",sn="+String(psn)+",valu="+String(pv)+",sensor='"+sens+"',reading="+rd+";</script>\
+    <style>\
+        .swh{width :320px;margin: auto;margin-top: 10px;}\
+        .swhd{border: 3px solid white;width: 100px;cursor: pointer;display: inline;margin-left: 100px;}\
+       .son{ background: #99ffcc;width: 50%;}.snc{ background: white;width: 50%;}.soff{ background:  #ff6666;width: 50%;}\
+    </style>\
+</head>\
+<body style=\"background: #bfbfbf;\">\
+    `<div style=\"margin: auto;margin-bottom: 50px;text-align: center;font-size: 32px;background: #ffff00;\">Temprature Sensor Setting</div>\
+<div style=\"width :320px;margin: auto;margin-top: 15px;font-size: 30px;\"><span style=\"display: inline;\">Sensor</span><div class=\"swhd\" onclick=\"location.replace('http://"+ip.toString()+"/r1');\"><span class=\"son\" id=\"n9\">ON</span><span class=\"soff\" id=\"f9\">OFF</span></div></div>\
+    <div style=\"width :320px;margin: auto;margin-top: 15px;font-size: 25px;\"><span>Sensor reading : </span><span>122</span><span style=\"margin-left: 30px;color: blue;font-size: 17px;cursor: pointer;\" onclick=\"location.replace('http://"+ip.toString()+"/'+sensor);\">Refresh</span></div>\
+      <div style=\"width :320px;margin: auto;margin-top: 15px;font-size: 30px;\"><span>Alarm point : </span><input type=\"text\" name=\"alarm\" value=\"1024\" onchange=\"valu=document.getElementById('alarmp').value;\" id=\"alarmp\" style=\"width: 80px;font-size: 20px;\"></div>\
+    <div style=\"font-size: 20px;text-align: center;margin-top: 30px; \">\
+        switchs response on alarm <br/>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 1 </span><div class=\"swhd\" onclick=\"sr1=(sr1==0)? 1:((sr1==1)? 2:0);relay();\"><span class=\"son\" id=\"n1\">ON</span><span class=\"snc\" id=\"c1\">NC</span><span class=\"soff\" id=\"f1\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 2 </span><div class=\"swhd\" onclick=\"sr2=(sr2==0)? 1:((sr2==1)? 2:0);relay();\"><span class=\"son\" id=\"n2\">ON</span><span class=\"snc\" id=\"c2\">NC</span><span class=\"soff\" id=\"f2\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 3 </span><div class=\"swhd\" onclick=\"sr3=(sr3==0)? 1:((sr3==1)? 2:0);relay();\"><span class=\"son\" id=\"n3\">ON</span><span class=\"snc\" id=\"c3\">NC</span><span class=\"soff\" id=\"f3\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 4 </span><div class=\"swhd\" onclick=\"sr4=(sr4==0)? 1:((sr4==1)? 2:0);relay();\"><span class=\"son\" id=\"n4\">ON</span><span class=\"snc\" id=\"c4\">NC</span><span class=\"soff\" id=\"f4\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 5 </span><div class=\"swhd\" onclick=\"sr5=(sr5==0)? 1:((sr5==1)? 2:0);relay();\"><span class=\"son\" id=\"n5\">ON</span><span class=\"snc\" id=\"c5\">NC</span><span class=\"soff\" id=\"f5\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 6 </span><div class=\"swhd\" onclick=\"sr6=(sr6==0)? 1:((sr6==1)? 2:0);relay();\"><span class=\"son\" id=\"n6\">ON</span><span class=\"snc\" id=\"c6\">NC</span><span class=\"soff\" id=\"f6\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 7 </span><div class=\"swhd\" onclick=\"sr7=(sr7==0)? 1:((sr7==1)? 2:0);relay();\"><span class=\"son\" id=\"n7\">ON</span><span class=\"snc\" id=\"c7\">NC</span><span class=\"soff\" id=\"f7\">OFF</span></div></div>\
+    <div class=\"swh\"><span style=\"display: inline;\"><span>Switch 8 </span><div class=\"swhd\" onclick=\"sr8=(sr8==0)? 1:((sr8==1)? 2:0);relay();\"><span class=\"son\" id=\"n8\">ON</span><span class=\"snc\" id=\"c8\">NC</span><span class=\"soff\" id=\"f8\">OFF</span></div></div>\
+\
+    </div>\
+    <div style=\"width: 300px;margin: auto;font-size: 25px;margin-top: 30px;\">\
+ <div style=\"float: left;background:green; \" onclick=\"location.replace('http://"+ip.toString()+"');\">back</div>\
+ <div style=\"float: right;background:green;\" onclick=\"location.replace('http://"+ip.toString()+"/'+'set-'+sensor+'-'+valu+'-'+sn+'-'+sr1+'-'+sr2+'-'+sr3+'-'+sr4+'-'+sr5+'-'+sr6+'-'+sr7+'-'+sr8);\">save</div>\
+    </div>\
+\
+<script>\
+    \
+    var relay=()=>{\
+ var rx=[sr1,sr2,sr3,sr4,sr5,sr6,sr7,sr8,sn];\
+ for(i=1;i<=9;i++){\
+ var on =document.getElementById('n'+i), off =document.getElementById('f'+i),nc =document.getElementById('c'+i);\
+ if(rx[(i-1)]==0){ on.style.visibility='hidden' ;nc.style.visibility='hidden' ;off.style.visibility='visible';}else if(rx[(i-1)]==1){off.style.visibility='hidden' ;nc.style.visibility='hidden' ;on.style.visibility='visible';}else if(rx[(i-1)]==2){off.style.visibility='hidden' ;nc.style.visibility='visible' ;on.style.visibility='hidden';}\
+ }\
+ };\
+ relay();\
+ document.getElementById('alarmp').value=valu;\
+document.getElementById('reading').innerHTML=reading;\
+</script>\
+</body></html>";
+  
+return fs;
+  }
+
+  String getValue(String data, char separator, int index)
+{
+    int found = 0;
+    int strIndex[] = { 0, -1 };
+    int maxIndex = data.length() - 1;
+
+    for (int i = 0; i <= maxIndex && found <= index; i++) {
+        if (data.charAt(i) == separator || i == maxIndex) {
+            found++;
+            strIndex[0] = strIndex[1] + 1;
+            strIndex[1] = (i == maxIndex) ? i+1 : i;
+        }
+    }
+    return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+

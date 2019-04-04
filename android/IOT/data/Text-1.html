@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+ 
+<head>
+    <script>var sr1=2,sr2=2,sr3=0,sr4=2,sr5=2,sr6=1,sr7=2,sr8=2,sn=1,valu=104,sensor='temp';</script>
+    <style>
+        .swh{width :320px;margin: auto;margin-top: 10px;}
+        .swhd{border: 3px solid white;width: 100px;cursor: pointer;display: inline;margin-left: 100px;}
+       .son{ background: #99ffcc;width: 50%;}.snc{ background: white;width: 50%;}.soff{ background:  #ff6666;width: 50%;}
+    </style>
+</head>
+<body style="background: #bfbfbf;">
+    `<div style="margin: auto;margin-bottom: 50px;text-align: center;font-size: 32px;background: #ffff00;" id="tit">Temprature Sensor Setting</div>
+<div style="width :320px;margin: auto;margin-top: 15px;font-size: 30px;"><span style="display: inline;">Sensor</span><div class="swhd" onclick="sn=sn==1? 0:1;relay();"><span class="son" id="n9">ON</span><span class="soff" id="f9">OFF</span></div></div>
+    <div style="width :320px;margin: auto;margin-top: 15px;font-size: 25px;"><span>Sensor reading : </span><span >122</span><span style="margin-left: 30px;color: blue;font-size: 17px;cursor: pointer;" onclick="location.replace('http://192.168.1.7/'+sensor);">Refresh</span></div>
+      <div style="width :320px;margin: auto;margin-top: 15px;font-size: 30px;"><span>Alarm point : </span><input type="text" name="alarm" value="1024" onchange="valu=this.value;" style="width: 80px;font-size: 20px;"></div>
+    <div style="font-size: 20px;text-align: center;margin-top: 30px; ">
+        switchs response on alarm <br/>
+    <div class="swh"><span style="display: inline;"><span>Switch 1 </span><div class="swhd" onclick="sr1=(sr1==0)? 1:((sr1==1)? 2:0);relay();"><span class="son" id="n1">ON</span><span class="snc" id="c1">NC</span><span class="soff" id="f1">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 2 </span><div class="swhd" onclick="sr2=(sr2==0)? 1:((sr2==1)? 2:0);relay();"><span class="son" id="n2">ON</span><span class="snc" id="c2">NC</span><span class="soff" id="f2">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 3 </span><div class="swhd" onclick="sr3=(sr3==0)? 1:((sr3==1)? 2:0);relay();"><span class="son" id="n3">ON</span><span class="snc" id="c3">NC</span><span class="soff" id="f3">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 4 </span><div class="swhd" onclick="sr4=(sr4==0)? 1:((sr4==1)? 2:0);relay();"><span class="son" id="n4">ON</span><span class="snc" id="c4">NC</span><span class="soff" id="f4">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 5 </span><div class="swhd" onclick="sr5=(sr5==0)? 1:((sr5==1)? 2:0);relay();"><span class="son" id="n5">ON</span><span class="snc" id="c5">NC</span><span class="soff" id="f5">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 6 </span><div class="swhd" onclick="sr6=(sr6==0)? 1:((sr6==1)? 2:0);relay();"><span class="son" id="n6">ON</span><span class="snc" id="c6">NC</span><span class="soff" id="f6">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 7 </span><div class="swhd" onclick="sr7=(sr7==0)? 1:((sr7==1)? 2:0);relay();"><span class="son" id="n7">ON</span><span class="snc" id="c7">NC</span><span class="soff" id="f7">OFF</span></div></div>
+    <div class="swh"><span style="display: inline;"><span>Switch 8 </span><div class="swhd" onclick="sr8=(sr8==0)? 1:((sr8==1)? 2:0);relay();"><span class="son" id="n8">ON</span><span class="snc" id="c8">NC</span><span class="soff" id="f8">OFF</span></div></div>
+
+    </div>
+    <div style="width: 300px;margin: auto;font-size: 25px;margin-top: 30px;">
+ <div style="float: left;background:green; " onclick="location.replace('http://192.168.1.7');">back</div>
+ <div style="float: right;background:green;" onclick="location.replace('http://192.168.1.7/'+'set-'+sensor+'-'+valu+'-'+sn+'-'+sr1+'-'+sr2+'-'+sr3+'-'+sr4+'-'+sr5+'-'+sr6+'-'+sr7+'-'+sr8);">save</div>
+    </div>
+
+<script>
+    
+    var relay=()=>{
+ var rx=[sr1,sr2,sr3,sr4,sr5,sr6,sr7,sr8,sn];
+ for(i=1;i<=9;i++){
+ var on =document.getElementById('n'+i), off =document.getElementById('f'+i);if (i!=9){var nc =document.getElementById('c'+i);}
+ if(rx[(i-1)]==0){ on.style.visibility='hidden' ;if (i!=9){nc.style.visibility='hidden';} off.style.visibility='visible';}else if(rx[(i-1)]==1){off.style.visibility='hidden' ;if (i!=9){nc.style.visibility='hidden';} on.style.visibility='visible';}else if(rx[(i-1)]==2){off.style.visibility='hidden' ;nc.style.visibility='visible' ;on.style.visibility='hidden';}
+ }
+ };
+ relay();
+</script>
+</body>
+
+</html>

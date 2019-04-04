@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+
+<div class="row search">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control text-center" placeholder="Search with keys" ng-model="keys">
+    <div class="input-group-append">
+      <button class="btn bc-orange" ng-click="search(keys)">Go</button>
+    </div>
+  </div>
+</div>
+<div class="product row product" ng-repeat="x in products" ng-click="inc(x);">
+  <div class="col-12">
+
+  <h1>{{x.name}}</h1>
+  <p>
+    <span class="">{{x.pid}}</span> <span class="f-right">ip : {{x.ip}}</span>
+  </p>
+
+</div>
+</div>
+</div>
+
+<style>
+.product{
+  background-color: #91BA3F;
+  color: #1A0D30;
+  cursor: pointer;
+  transform: rotateZ(0.5deg);
+  margin: 2vw;
+  border-style: outset;
+  border-color: #EAF4D7;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.search{margin :2vh}
+
+</style>
