@@ -1,0 +1,99 @@
+
+.minc{
+  overflow: scroll;
+  height: 100vh;
+}
+
+.navbar{ height: 100vh;
+  padding:0;
+}
+ul{
+padding-inline-start: 0px;
+  }
+.z-pad{
+  padding:0;
+  padding-inline-start: 0px;
+}
+nav li {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  cursor: pointer;
+  color: #EAF4D7;
+}
+.material-icons {font-size:40px;}
+
+nav li:hover{background-color: #E6751E;}
+
+.fill{width: 100%;}
+.left{margin-left:0;}
+.f-right{float: right;}
+.clickable{cursor: pointer;}
+
+
+.bc-light{background-color: #EAF4D7}
+.bc-green{background-color: #91BA3F}
+.bc-violet{background-color: #5D28B9}
+.bc-orange{background-color: #E6751E}
+.bc-berry{background-color: #1A0D30}
+.bc-white{background-color: white}
+.bc-gray{background-color: gray}
+
+.c-light{color: #EAF4D7}
+.c-green{color: #91BA3F}
+.c-violet{color: #5D28B9}
+.c-orange{color: #E6751E}
+.c-berry{color: #1A0D30}
+.c-white{color: white}
+.c-gray{color: gray}
+
+.ng-enter {
+  transition: 0.2s linear all;
+  opacity: 0;
+  transform: translate(0,-100%);
+}
+
+.ng-enter.ng-enter-active {
+  opacity: 1;
+  transform: translate(0,0);
+}
+.ng-leave {
+  transition: 0.3s linear all;
+  opacity: 1;
+
+}
+
+.ng-leave.ng-leave-active {
+  opacity: 0;
+  transform: rotateX(150deg);
+}
+.ng-hide-remove {
+    transition: 0.5s linear all;
+    opacity: 0;
+    transform: scale(0.1,0.1);
+}
+
+
+.ng-hide-remove-active {
+    opacity: 1;
+transform: scale(1,1);
+}
+.ng-hide-add {
+    transition: 0.5s linear all;
+    opacity: 1;
+transform: scale(1,1);
+}
+
+
+.ng-hide-add-active {
+    opacity: 0;
+transform: scale(0.1,0.1);
+}
+
+::-webkit-scrollbar {
+    width: 3px;  /* remove scrollbar space */
+
+}
+::-webkit-scrollbar-thumb {
+    background: #E6751E;
+}
