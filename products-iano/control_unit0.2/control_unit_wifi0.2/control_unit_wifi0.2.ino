@@ -294,10 +294,10 @@ void orders(String ordstr){
 
 String jstrdata(){
 
- String ark[]={"pid","id","appass","wfstate","ip","wfon","swhs"};
- String arv[]={"control-unit0.2",id,appass,wfstate,ipa,wfon,"["+arts(r,5)+"]"};
-  int ari[]={1,1,1,1,1,0,0};
-  String dt=jsonf(ark,arv,ari,7);
+ String ark[]={"pid","id","appass","wfstate","ip","wfon","swhs","fb"};
+ String arv[]={"control-unit0.2",id,appass,wfstate,ipa,wfon,"["+arts(r,5)+"]","["+arts(fb,4)+"]"};
+  int ari[]={1,1,1,1,1,0,0,0};
+  String dt=jsonf(ark,arv,ari,8);
   
   return dt;
   }
