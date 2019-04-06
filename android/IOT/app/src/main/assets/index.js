@@ -23,7 +23,7 @@ app.run(function($rootScope) {
         for (var i = 0; i < $rootScope.products.length; i++) {
           $rootScope.products[i].querys.stop();
         }
-        
+
       $rootScope.products=[];
         var do1 =(d,ipa)=>{
         var obj=JSON.parse(d.replace(/'/g,'"'));
@@ -64,6 +64,14 @@ app.run(function($rootScope) {
       });
 
       }
+      
+      $rootScope.disc=function (){
+        $rootScope.navs[0].back=['home/search.htm'];
+        $rootScope.inc($rootScope.navs[0]);
+        alert('Disconnected');
+        $rootScope.search($rootScope.key);
+      }
+
       $rootScope.search($rootScope.key);
 });
 

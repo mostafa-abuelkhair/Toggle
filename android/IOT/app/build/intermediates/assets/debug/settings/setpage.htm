@@ -25,7 +25,7 @@
 
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-   <span class="input-group-text">access point password</span>
+   <span class="input-group-text">ap password</span>
 </div>
   <input type="text" class="form-control" ng-model="appass">
   <div class="input-group-append">
@@ -34,7 +34,7 @@
 </div>
 
 <div class="s">
-<div> connect unit to wifi </div>
+<div> connect unit to wifi network </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
    <span class="input-group-text">wifi ssid</span>
@@ -48,7 +48,7 @@
   <input type="text" class="form-control" ng-model="wfpass">
 </div>
 
-<button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'wfset/'+wfssid+','+wfpass}})">save</button>
+<button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'wfset/'+wfssid+','+wfpass}});">save</button>
 </div>
 
 
