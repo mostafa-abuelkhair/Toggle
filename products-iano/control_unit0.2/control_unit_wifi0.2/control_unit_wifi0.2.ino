@@ -24,6 +24,7 @@ int r[]={0,0,0,0,0};  //switches state array
 int fb[]={0,0,0,0,0};  //feedback state array
 int ts[]={0,0,0,0,0};
 int wcount;
+int uctw =0;
 
 
 const int adc = A0; //vibrations sensor pin
@@ -91,6 +92,7 @@ WiFi.mode(WIFI_AP_STA);
    delay(100);
     
 WiFi.begin(ssid.c_str(),password.c_str());   //WiFi connection
+    uctw=1;
     wcount=0;
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
     if(wcount==20){break;}
@@ -103,7 +105,7 @@ WiFi.begin(ssid.c_str(),password.c_str());   //WiFi connection
       Serial.println("local ip : "+WiFi.localIP().toString());
     wfstate="unit connected to "+ssid ;
     }
-    else{WiFi.disconnect(); wfstate="unit faild to connect to wifi";}
+    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";}
    delay(1000);
 
 
@@ -119,8 +121,8 @@ void loop() {
    
  server.handleClient();
         
-  if (WiFi.status() != WL_CONNECTED){
-    WiFi.disconnect(); wfstate="unit faild to connect to wifi";
+  if ( (WiFi.status() != WL_CONNECTED) && (uctw) ){
+    WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";
     }
 
 
@@ -246,7 +248,7 @@ void orders(String ordstr){
       WiFi.disconnect(); 
       delay(100);
       WiFi.begin(ssid.c_str(),password.c_str());
-      
+      uctw=1;
     wcount=0;
     
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
@@ -260,7 +262,7 @@ void orders(String ordstr){
       Serial.println("local ip : "+WiFi.localIP().toString());
     wfstate="unit connected to "+ssid ;
     }
-    else{WiFi.disconnect(); wfstate="unit faild to connect to wifi";}
+    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";}
   
       break;
       
