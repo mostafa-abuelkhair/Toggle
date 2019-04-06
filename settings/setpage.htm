@@ -1,1 +1,61 @@
-settings
+<div class="jumbotron">
+  <h1>{{sp.name}}</h1>
+  <p>{{sp.pid}}</p>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text">name</span>
+</div>
+  <input type="text" class="form-control" ng-model="sname">
+  <div class="input-group-append">
+    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'name/'+sname}})">save</button>
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text">key</span>
+</div>
+  <input type="text" class="form-control" ng-model="skey">
+  <div class="input-group-append">
+    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'key/'+skey}})">save</button>
+  </div>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text">access point password</span>
+</div>
+  <input type="text" class="form-control" ng-model="appass">
+  <div class="input-group-append">
+    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'appass/'+appass}})">save</button>
+  </div>
+</div>
+
+<div class="s">
+<div> connect unit to wifi </div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text">wifi ssid</span>
+</div>
+  <input type="text" class="form-control" ng-model="wfssid">
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+   <span class="input-group-text">wifi password</span>
+</div>
+  <input type="text" class="form-control" ng-model="wfpass">
+</div>
+
+<button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'wfset/'+wfssid+','+wfpass}})">save</button>
+</div>
+
+
+<style>
+.s{
+border: solid;
+border-color: skyblue;
+}
+
+</style>
