@@ -6,7 +6,7 @@ function ajqueue (ur){
   var obr=this;
 this.repeat=function (mills,qu){
   this.repeatb=true;
-  var func = obr.h(qu).complete;
+  var func = this.h(qu).complete;
 qu.complete=function(){
   window.setTimeout(re,mills);
   func();

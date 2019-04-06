@@ -21,6 +21,7 @@ public class CONTROL extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccessFromFileURLs(true); //Maybe you don't need this rule
         webSettings.setAllowUniversalAccessFromFileURLs(true);
+        webSettings.setDomStorageEnabled(true);
         myWebView.setWebViewClient(new WebViewClient());
 
     }

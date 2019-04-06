@@ -5,5 +5,4 @@ app.controller('home-ctrl', function($scope,$rootScope) {
   $rootScope.p=x;
   }
 
-
 });

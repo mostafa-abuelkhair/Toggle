@@ -5,16 +5,25 @@ app.run(function($rootScope) {
   $rootScope.navs = [
     {ico:"home",nav:"home/home.htm",back:['home/search.htm']},{ico:"device_hub",nav:"tree/tree.htm",back:[]}
       ,{ico:"visibility",nav:"sensors/sensors.htm",back:[]}
-      ,{ico:"settings",nav:"settings/settings.htm",back:[]}
+      ,{ico:"settings",nav:"settings/settings.htm",back:['settings/ps.htm']}
       ,{ico:"account_circle",nav:"account/account.htm",back:[]}];
     $rootScope.back= $rootScope.navs[0].back;
     $rootScope.products=[];
     $rootScope.key="";
+
+    $rootScope.lss=function(k,v){localStorage.setItem(k,v);}
+    $rootScope.lsg=function(k){return localStorage.getItem(k);}
+
      $rootScope.bckf=function(r) {
        $rootScope.back.push(r);
        //$scope.back= $scope.ur=='home/home.htm'? []:$scope.back;
       }
       $rootScope.search=function (key){
+
+        for (var i = 0; i < $rootScope.products.length; i++) {
+          $rootScope.products[i].querys.stop();
+        }
+        
       $rootScope.products=[];
         var do1 =(d,ipa)=>{
         var obj=JSON.parse(d.replace(/'/g,'"'));
@@ -32,9 +41,6 @@ app.run(function($rootScope) {
              $rootScope.inc($rootScope.navs[0]);
              $rootScope.$apply();
              alert('Disconnected');
-             for (var i = 0; i < $rootScope.products.length; i++) {
-               $rootScope.products[i].querys.stop();
-             }
              $rootScope.search($rootScope.key);
            }
            b.repeat(200,{data:{ord:'getr',key:key},success:s,error:f,timeout:10000});
