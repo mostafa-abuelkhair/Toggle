@@ -2,5 +2,13 @@
     {
         "merged": "F:\\D\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
         "source": "F:\\D\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "F:\\D\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ico.png",
+        "source": "F:\\D\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-mdpi\\ico.png"
+    },
+    {
+        "merged": "F:\\D\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\icot.png",
+        "source": "F:\\D\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-mdpi\\icot.png"
     }
 ]

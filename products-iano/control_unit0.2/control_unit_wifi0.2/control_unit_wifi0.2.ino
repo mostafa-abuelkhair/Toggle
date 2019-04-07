@@ -11,6 +11,7 @@ ESP8266WebServer server(80);
 
 int chk;
 String id="a3f5mh*o6sb%";
+String pname="control-unit";
 String wfstate="no connection";
 IPAddress ip ;
 String ipa="";
@@ -65,7 +66,13 @@ for(int i2=0;i2<eesz;i2++){
 for(int i2=0;i2<eesz;i2++){
   appass+=char(EEPROM.read(i2+50));
     }
-  
+
+pname="";
+     eesz=EEPROM.read(150);
+for(int i2=0;i2<eesz;i2++){
+  pname+=char(EEPROM.read(i2+111));
+    }
+    
  pinMode(re1, OUTPUT); pinMode(re2, OUTPUT);pinMode(re3, OUTPUT);pinMode(re4, OUTPUT);pinMode(re5, OUTPUT);
  pinMode(muxout, INPUT);
  pinMode(sela, OUTPUT);pinMode(selb, OUTPUT);;pinMode(selc, OUTPUT);//pinMode(10, OUTPUT);
@@ -81,7 +88,7 @@ WiFi.mode(WIFI_AP_STA);
    Serial.println();
   Serial.print("Configuring access point...");
   /* You can remove the password parameter if you want the AP to be open. */
-  WiFi.softAP(apssid.c_str(),appass.c_str(),4);
+  WiFi.softAP(pname.c_str(),appass.c_str(),4);
 
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
@@ -105,7 +112,7 @@ WiFi.begin(ssid.c_str(),password.c_str());   //WiFi connection
       Serial.println("local ip : "+WiFi.localIP().toString());
     wfstate="unit connected to "+ssid ;
     }
-    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";}
+    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to other wifi network";}
    delay(1000);
 
 
@@ -122,7 +129,7 @@ void loop() {
  server.handleClient();
         
   if ( (WiFi.status() != WL_CONNECTED) && (uctw) ){
-    WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";
+    WiFi.disconnect();uctw=0; wfstate="unit faild to connect to other wifi network";
     }
 
 
@@ -183,7 +190,7 @@ void orders(String ordstr){
 
   int ord=0;
     
-    y=getValue(ordstr,'-',0);
+    y=ordstr;
      
     String yv1=getValue(y,'/',0);
     
@@ -197,6 +204,7 @@ void orders(String ordstr){
     ord= (yv1=="wfset")? 7:ord;
     ord= (yv1=="wfon")? 8:ord;
     ord= (yv1=="appass")? 9:ord;
+    ord= (yv1=="name")? 10:ord;
     
     switch(ord){
       
@@ -262,7 +270,7 @@ void orders(String ordstr){
       Serial.println("local ip : "+WiFi.localIP().toString());
     wfstate="unit connected to "+ssid ;
     }
-    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to wifi";}
+    else{WiFi.disconnect();uctw=0; wfstate="unit faild to connect to other wifi network";}
   
       break;
       
@@ -270,7 +278,7 @@ void orders(String ordstr){
        wfon=getValue(y,'/',1);
       break;
       
-      case 9:
+      case 9:{
     appass=getValue(y,'/',1);
     
    for(int ii=0;ii<appass.length();ii++){
@@ -282,11 +290,23 @@ void orders(String ordstr){
 
     
    WiFi.softAPdisconnect();
-   WiFi.softAP(apssid.c_str(),appass.c_str(),4);
+   WiFi.softAP(pname.c_str(),appass.c_str(),4);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
-  Serial.println("new ap started");
+  Serial.println("new ap started");}
+      break;
+
+       case 10 :
+    pname=getValue(y,'/',1);
+    
+   for(int ii=0;ii<pname.length();ii++){
+    EEPROM.write(ii+111,pname.charAt(ii));
+    EEPROM.commit();
+    }
+     EEPROM.write(150,pname.length());
+    EEPROM.commit();
+    
       break;
       
       }
@@ -296,10 +316,10 @@ void orders(String ordstr){
 
 String jstrdata(){
 
- String ark[]={"pid","id","appass","wfstate","ip","wfon","swhs","fb"};
- String arv[]={"control-unit0.2",id,appass,wfstate,ipa,wfon,"["+arts(r,5)+"]","["+arts(fb,4)+"]"};
-  int ari[]={1,1,1,1,1,0,0,0};
-  String dt=jsonf(ark,arv,ari,8);
+ String ark[]={"pid","id","appass","wfstate","ip","wfon","swhs","fb","name"};
+ String arv[]={"control-unit0.2",id,appass,wfstate,ipa,wfon,"["+arts(r,5)+"]","["+arts(fb,4)+"]",pname};
+  int ari[]={1,1,1,1,1,0,0,0,1};
+  String dt=jsonf(ark,arv,ari,9);
   
   return dt;
   }

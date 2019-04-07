@@ -64,14 +64,14 @@ app.run(function($rootScope) {
       });
 
       }
-      
+
       $rootScope.disc=function (){
         $rootScope.navs[0].back=['home/search.htm'];
         $rootScope.inc($rootScope.navs[0]);
         alert('Disconnected');
         $rootScope.search($rootScope.key);
       }
-
+      
       $rootScope.search($rootScope.key);
 });
 
