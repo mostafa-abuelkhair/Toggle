@@ -1,6 +1,5 @@
 <div class="jumbotron">
   <h1>{{sp.name}}</h1>
-  <p>{{sp.pid}}</p>
 </div>
 
 <div class="input-group mb-3">
@@ -9,7 +8,7 @@
 </div>
   <input type="text" class="form-control" ng-model="sname">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'name/'+sname}})">save</button>
+    <button class="btn btn-success" ng-click="sp.querys.addq({data:{ord:'name/'+sname}})">save</button>
   </div>
 </div>
 
@@ -19,7 +18,7 @@
 </div>
   <input type="text" class="form-control" ng-model="skey">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'key/'+skey}})">save</button>
+    <button class="btn btn-success" ng-click="sp.querys.addq({data:{ord:'key/'+skey}})">save</button>
   </div>
 </div>
 
@@ -29,7 +28,7 @@
 </div>
   <input type="text" class="form-control" ng-model="appass">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'appass/'+appass}})">save</button>
+    <button class="btn btn-success" ng-click="sp.querys.addq({data:{ord:'appass/'+appass}})">save</button>
   </div>
 </div>
 
@@ -48,7 +47,8 @@
   <input type="text" class="form-control" ng-model="wfpass">
 </div>
 
-<button class="btn btn-success" ng-click="p.querys.addq({data:{ord:'wfset/'+wfssid+','+wfpass}});">save</button>
+<button class="btn btn-success" ng-click="sp.querys.addq({data:{ord:'wfset/'+wfssid+','+wfpass}});">save</button>
+<div class="st">{{sp.wfstate}}</div>
 </div>
 
 
@@ -57,5 +57,9 @@
 border: solid;
 border-color: skyblue;
 }
-
+.st{
+  display: block;
+  width: 100%;
+  text-align:center;
+}
 </style>
