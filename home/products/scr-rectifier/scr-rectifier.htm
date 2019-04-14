@@ -1,0 +1,62 @@
+<div class="jumbotron">
+  <h1>frequency : {{((1000/p.t).toFixed(2))+" HZ"}}</h1>
+</div>
+
+
+
+<div class="btn-group btn-group-lg">
+  <button type="button" ng-click="p.querys.addq({data:{ord:'fh/1'}})" class="btn btn-{{p.fh==1? 'primary':'basic'}}">full wave</button>
+  <button type="button" ng-click="p.querys.addq({data:{ord:'fh/0'}})" class="btn btn-{{p.fh==1? 'basic':'primary'}}">half wave</button>
+</div>
+
+<div class="btn-group btn-group-lg">
+  <button type="button" ng-click="p.querys.addq({data:{ord:'potst/1'}})" class="btn btn-{{p.potst==1? 'primary':'basic'}}">potentiometer</button>
+  <button type="button" ng-click="p.querys.addq({data:{ord:'potst/0'}})" class="btn btn-{{p.potst==1? 'basic':'primary'}}">slider</button>
+</div>
+
+
+<input type="range" min="0" max="100" ng-model="val" ng-change="p.querys.addq({data:{ord:'prec/'+val}})" class="slider" id="myRange">
+<span class='c'>{{p.prec+" %"}}</span>
+
+
+
+<style>
+.c{
+  margin:100px;
+}
+.btn-group{
+display: flex;
+width:100%;
+align-items: center;
+margin-bottom: 50px;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+</style>
