@@ -43,7 +43,16 @@ app.run(function($rootScope) {
              alert('Disconnected');
              $rootScope.search($rootScope.key);
            }
-           b.repeat(200,{data:{ord:'getr',key:key},success:s,error:f,timeout:10000});
+           b.s=s;
+           b.f=f;
+           b.fq=function(dob){
+             b.addq({data:dob,success:b.s,error:b.f})
+           }
+
+            var per= obj['repeatper']==undefined? 200:obj['repeatper'];
+            if(per){
+           b.repeat(per,{data:{ord:'getr',key:key},success:b.s,error:b.f,timeout:10000});
+             }
            obj.querys=b;
            obj.ip=ipa;
           $rootScope.products.push(obj);
@@ -71,7 +80,7 @@ app.run(function($rootScope) {
         alert('Disconnected');
         $rootScope.search($rootScope.key);
       }
-      
+
       $rootScope.search($rootScope.key);
 });
 
