@@ -11,15 +11,12 @@ const int adc = A0; //vibrations sensor pin
 #define re3   0 //switch3
 #define re4   2 //switch4
 #define re5   15 //switch5
-#define sela 16 //mux out
-#define selb   14 //A
-#define selc   12 //B
-#define muxout   13 //C
+#define sela 16 //A
+#define selb   14 //B
+#define selc   12 //C
+#define muxout   13 //mux out
 
 String id="a3f5mh*o6sb%";
-String pname="control_unit";
-String apssid = "Control-unit0.2";
-String appass= "0123456789";
  
 void setup() {
   
@@ -47,8 +44,6 @@ ToggleLoop();
 
 
 muxf(10);
-        
-delay(1);
 
 }
 

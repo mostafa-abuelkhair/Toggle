@@ -30,10 +30,9 @@ String s_data();
 #include <ESP8266WebServer.h>
 
 extern String id;
-extern String pname;
-extern String apssid;
-extern String appass;
 
+String appass;
+String pname;
 String wfstate="no connection";
 IPAddress ip ;
 String ipa="";
