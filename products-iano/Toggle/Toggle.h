@@ -16,10 +16,10 @@ String arts(int v[],int asize);
 String getValue(String data, char separator, int index);
 String d_add(String a[],String b[],int c[],int asize);
 void star(String v,int arra[],int asize);
-void orders(String ordstr);
-String jstrdata();
 void r_orders(String ordstr);
-String s_data();
+String jstrdata();
+void orders(String ordstr);
+String data();
 
 
 #include "Arduino.h"
@@ -30,6 +30,7 @@ String s_data();
 #include <ESP8266WebServer.h>
 
 extern String id;
+extern String pid;
 
 String appass;
 String pname;
@@ -144,12 +145,12 @@ String jstrdata(){
 String dt="";
  dt="{'rep':'0432'";
 
- String ark[]={"pid","id","appass","wfstate","ip","wfon","name"};
- String arv[]={"control-unit0.2",id,appass,wfstate,ipa,wfon,pname};
-  int ari[]={1,1,1,1,1,0,1};
-  dt+=d_add(ark,arv,ari,7);
+ String ark[]={"pid","id","appass","wfstate","ip","wfon","name","repeatper"};
+ String arv[]={pid,id,appass,wfstate,ipa,wfon,pname,"200"};
+  int ari[]={1,1,1,1,1,0,1,0};
+  dt+=d_add(ark,arv,ari,8);
   
-  dt+=s_data();
+  dt+=data();
 
    dt+="}";
 Serial.println(dt);
@@ -174,14 +175,14 @@ Serial.println(dt);
 void appget(){
   String temp1=server.arg(0);
   if(temp1=="get"){ipa=server.arg(2);}
-  orders(temp1);
   r_orders(temp1);
+  orders(temp1);
  if(getValue(temp1,'/',0)!="wfset"){ appsend();}
   
   }
   
 
-void orders(String ordstr){
+void r_orders(String ordstr){
 
   int ord=0;
     

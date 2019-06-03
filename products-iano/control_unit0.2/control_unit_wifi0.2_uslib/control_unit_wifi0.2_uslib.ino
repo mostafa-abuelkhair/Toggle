@@ -17,6 +17,7 @@ const int adc = A0; //vibrations sensor pin
 #define muxout   13 //mux out
 
 String id="a3f5mh*o6sb%";
+String pid="control-unit0.2";
  
 void setup() {
   
@@ -49,7 +50,7 @@ muxf(10);
 
 
 
-String s_data()
+String data()
   {
     
   String ark[]={"swhs","fb"};
@@ -59,7 +60,7 @@ String s_data()
   return d_add(ark,arv,ari,2);
   }
 
- void r_orders(String ordstr)
+ void orders(String ordstr)
    {
   int ord=0;
     
