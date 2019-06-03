@@ -20,6 +20,8 @@ void r_orders(String ordstr);
 String jstrdata();
 void orders(String ordstr);
 String data();
+void eep_write(String val,int st, int leidx);
+String eep_read(int st, int leidx);
 
 
 #include "Arduino.h"
@@ -62,27 +64,15 @@ void ToggleBegin()
 
 EEPROM.begin(512);
   
-ssidpass="";
-
-
-int eesz=EEPROM.read(100);
-for(int i2=0;i2<eesz;i2++){
-  ssidpass+=char(EEPROM.read(i2));
-    }
-  ssid=getValue(ssidpass,'-',0);password=getValue(ssidpass,'-',1);
+ ssidpass=eep_read(0,100);
+ ssid=getValue(ssidpass,'-',0);password=getValue(ssidpass,'-',1);
   
- appass="";
+ appass=eep_read(50,110);
  
-   eesz=EEPROM.read(110);
-for(int i2=0;i2<eesz;i2++){
-  appass+=char(EEPROM.read(i2+50));
-    }
+ pname=eep_read(111,150);
 
-pname="";
-     eesz=EEPROM.read(150);
-for(int i2=0;i2<eesz;i2++){
-  pname+=char(EEPROM.read(i2+111));
-    }
+ p_key=eep_read(160,200);
+
 
 
 delay(1000);
@@ -154,7 +144,9 @@ String dt="";
 
    dt+="}";
 Serial.println(dt);
+
   return dt;
+
   }
   
   String d_add(String a[],String b[],int c[],int asize){
@@ -174,11 +166,18 @@ Serial.println(dt);
 
 void appget(){
   String temp1=server.arg(0);
+  String r_key=server.arg(1);
   if(temp1=="get"){ipa=server.arg(2);}
+
+if (r_key==p_key || p_key=="") {
+
   r_orders(temp1);
   orders(temp1);
+
  if(getValue(temp1,'/',0)!="wfset"){ appsend();}
-  
+
+  }
+
   }
   
 
@@ -196,7 +195,8 @@ void r_orders(String ordstr){
     ord= (yv1=="wfon")? 8:ord;
     ord= (yv1=="appass")? 9:ord;
     ord= (yv1=="name")? 10:ord;
-    
+    ord= (yv1=="key")? 11:ord;
+
     switch(ord){
       
       case 1:
@@ -211,12 +211,7 @@ void r_orders(String ordstr){
          wfstate="connecting to "+ssid;
          appsend();
       
-    for(int ii=0;ii<ssidpass.length();ii++){
-    EEPROM.write(ii,ssidpass.charAt(ii));
-    EEPROM.commit();
-    }
-     EEPROM.write(100,ssidpass.length());
-    EEPROM.commit();
+    eep_write(ssidpass,0,100);
 
       WiFi.disconnect(); 
       delay(100);
@@ -246,12 +241,7 @@ void r_orders(String ordstr){
       case 9:{
     appass=getValue(y,'/',1);
     
-   for(int ii=0;ii<appass.length();ii++){
-    EEPROM.write(ii+50,appass.charAt(ii));
-    EEPROM.commit();
-    }
-     EEPROM.write(110,appass.length());
-    EEPROM.commit();
+    eep_write(appass,50,110);
 
     
    WiFi.softAPdisconnect();
@@ -265,15 +255,16 @@ void r_orders(String ordstr){
        case 10 :
     pname=getValue(y,'/',1);
     
-   for(int ii=0;ii<pname.length();ii++){
-    EEPROM.write(ii+111,pname.charAt(ii));
-    EEPROM.commit();
-    }
-     EEPROM.write(150,pname.length());
-    EEPROM.commit();
+    eep_write(pname,111,150);
     
       break;
-      
+
+       case 11 :
+    p_key=getValue(y,'/',1);
+    
+    eep_write(p_key,160,200);
+    
+      break;
       }
       ord=0; 
   }
@@ -319,7 +310,28 @@ void r_orders(String ordstr){
 
 
 
+void eep_write(String val,int st, int leidx)  //function to write to eeprom
+  {
+    
+ for(int ii=0;ii<val.length();ii++){
+    EEPROM.write(ii+st,val.charAt(ii));
+    EEPROM.commit();
+    }
+     EEPROM.write(leidx,val.length());
+    EEPROM.commit();
+  
+  }
 
+  String eep_read(int st, int leidx) //function to read from eeprom
+  {
+    
+String dt="";
+     int eesz=EEPROM.read(leidx);
+    for(int i2=0;i2<eesz;i2++){
+      dt+=char(EEPROM.read(i2+st));
+    }
+  return dt;
+  }
    
 
 #endif

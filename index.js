@@ -27,6 +27,7 @@ app.run(function($rootScope) {
       $rootScope.products=[];
         var do1 =(d,ipa)=>{
         var obj=JSON.parse(d.replace(/'/g,'"'));
+
          if(obj.rep=='0432'){
            var b = new ajqueue('http://'+ipa);
            function s(d){
@@ -46,7 +47,7 @@ app.run(function($rootScope) {
            b.s=s;
            b.f=f;
            b.fq=function(dob){
-            // dob.key=key;
+             dob.key=key;
              b.addq({data:dob,success:b.s,error:b.f})
            }
 
@@ -56,6 +57,7 @@ app.run(function($rootScope) {
              }
            obj.querys=b;
            obj.ip=ipa;
+           obj.key=key;
           $rootScope.products.push(obj);
           $rootScope.$apply();
         }
