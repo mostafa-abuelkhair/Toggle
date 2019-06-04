@@ -1,0 +1,8 @@
+<ul>
+  <li ng-repeat="d in d.s track by $index">
+     <div class="tf-nc" ng-click="node(d)"> {{d.t}} </div>
+     <div ng-if="d.s[0]" ng-include="'tree/rec.htm'">
+
+     </div>
+  </li>
+</ul>
