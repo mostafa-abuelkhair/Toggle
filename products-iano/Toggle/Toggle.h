@@ -12,23 +12,25 @@ void ToggleBegin();
 void ToggleLoop();
 void appsend();
 void appget();
-String arts(int v[],int asize);
-String getValue(String data, char separator, int index);
-String d_add(String a[],String b[],int c[],int asize);
-void star(String v,int arra[],int asize);
-void r_orders(String ordstr);
+String arts(int[],int);
+String getValue(String, char, int);
+String d_add(String[],String[],int[],int );
+String d_add(String[],String[],int[],int ,String[],int[],int,String [],String[],int);
+void star(String, int[],int);
+void r_orders(String);
 String jstrdata();
-void orders(String ordstr);
+void orders(String);
 String data();
-void eep_write(String val,int st, int leidx);
-String eep_read(int st, int leidx);
-
+void eep_write(String, int, int);
+String eep_read(int, int);
+String json(String[],int[],int);
+String json(String[],String[],int);
+void dw_op(String, String[], int[], int[], int);
 
 #include "Arduino.h"
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <EEPROM.h>
-#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
 extern String id;
@@ -49,8 +51,10 @@ String y="";
 String bdt="";
 String sdt="";
 int cas =0;
+int repeater=200;
 
 String p_key="";
+
 
 
 ESP8266WebServer server(80);
@@ -131,12 +135,12 @@ server.send(200,"text",jstrdata());
 
 
 String jstrdata(){
-  
+
 String dt="";
  dt="{'rep':'0432'";
 
  String ark[]={"pid","id","appass","wfstate","ip","wfon","name","repeatper"};
- String arv[]={pid,id,appass,wfstate,ipa,wfon,pname,"200"};
+ String arv[]={pid,id,appass,wfstate,ipa,wfon,pname,String(repeater)};
   int ari[]={1,1,1,1,1,0,1,0};
   dt+=d_add(ark,arv,ari,8);
   
@@ -161,6 +165,36 @@ Serial.println(dt);
       }
 
    return dt2;
+    }
+
+  String d_add(String a[],String b[],int c[],int asize,String ok[],int ov[],int o_n,String sk[],String sv[],int sn){
+
+    String dt2=",'outputs':"+json(ok,ov,o_n)+",'sensors':"+json(sk,sv,sn);
+    for(int g=0;g<asize;g++){
+      dt2+=",'";
+      dt2+=a[g];
+      dt2+="':";
+      if(c[g]==1){dt2+="'"+b[g]+"'";}
+      else{dt2+=b[g];}
+      }
+
+   return dt2;
+    }
+
+  String json(String a[],int b[],int asize){
+
+    String dt2="";
+    for(int g=0;g<asize;g++){ dt2+=",'"+a[g]+"':"+b[g];}
+
+   return "{"+dt2.substring(1)+"}";
+    }
+
+  String json(String a[],String b[],int asize){
+
+    String dt2="";
+    for(int g=0;g<asize;g++){ dt2+=",'"+a[g]+"':"+"'"+b[g]+"'";}
+
+   return "{"+dt2.substring(1)+"}";
     }
     
 
@@ -269,6 +303,20 @@ void r_orders(String ordstr){
       ord=0; 
   }
   
+
+ void dw_op(String y,String k[], int v[], int op[], int n){
+
+	String yv1=getValue(y,'/',0);
+    
+	for (int i=0;i<n;i++){
+	if (yv1==k[i]){
+          v[i]=getValue(y,'/',1).toInt();
+          digitalWrite(op[i],v[i]);
+	}
+	}	
+
+
+ }
 
  String getValue(String data, char separator, int index)  //function to split string by char
 {
