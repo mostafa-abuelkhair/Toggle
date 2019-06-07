@@ -2,15 +2,15 @@ app.controller('tree-ctrl', function($scope,$rootScope) {
 
 $scope.d={
            s:[{
-                t:'home',
+                t:{name:'home',id:"asd"},
                 s:[
-                   {t:4,s:[]},
-                   {t:6,s:[]},
+                   {t:{name:'room1',id:"asd1"},s:[]},
+                   {t:{name:'room2',id:"asd2"},s:[]},
                    {
-                     t:10,
+                     t:{name:'room3',id:"asd3"},
                      s:[
-                         {t:15,s:[]},
-                         {t:18,s:[]}
+                         {t:{name:'out1',id:"asd4"},s:[]},
+                         {t:{name:'out2',id:"asd5"},s:[]}
                        ]
                    }
                   ]
@@ -20,8 +20,15 @@ $scope.d={
 
 $scope.node=function(ob){
 
-ob.s.push({t:"new",s:[]});
+//ob.s.push({t:"new",s:[]});
+$('#myModal').modal('toggle');
+$scope.t=ob.t;
+}
 
+$scope.products=[{id:'asd',o:0},{id:'asd2',o:0}];
+
+$scope.p=function(ob){
+return $scope.products.find((e)=>e.id==ob.t.id);
 }
 
 });
