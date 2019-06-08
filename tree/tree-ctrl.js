@@ -46,7 +46,62 @@ return $rootScope.products.find((e)=>e.id==ob.t.id);
 $scope.mc=function(){$('#myModal').modal('toggle');}
 
 $scope.req=function(d){
-  $scope.p(d).querys.fq({ord:d.t.out+'/'+($scope.p(d).outputs[d.t.out]? '0':'1')});
+if($scope.con(d)){
+
+  var st=$scope.st(d)? '0':'1';
+
+  var re =(d)=>{
+    for(var x of d.s){
+     if (x.t.out=='roots'){re(x);}
+     else {$scope.p(x).querys.fq({ord:x.t.out+'/'+st});}
+    }
+  };
+
+  if(d.t.out=='roots'){ re(d); }
+
+  else { $scope.p(d).querys.fq({ord:d.t.out+'/'+($scope.p(d).outputs[d.t.out]? '0':'1')}); }
+
+}
+}
+
+$scope.st=function(d){
+
+  if(d.t.out=='roots'){
+    for(var x of d.s){
+      if (x.t.out=='roots'){
+        var k= $scope.st(x);
+        if(k){return k;}
+      }
+      else if ($scope.p(x).outputs[x.t.out]){return true;}
+
+    }
+    return false;
+  }
+
+  else {
+  return ($scope.p(d).outputs[d.t.out]);
+       }
+
+}
+
+$scope.con=function(d){
+
+  if(d.t.out=='roots'){
+    for(var x of d.s){
+      if (x.t.out=='roots'){
+        var k= $scope.con(x);
+        if(k){return k;}
+      }
+      else if ($scope.p(x)!=undefined){return true;}
+
+    }
+    return false;
+  }
+
+  else {
+  return ($scope.p(d)==undefined? false:true);
+       }
+
 }
 
 });
