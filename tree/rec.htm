@@ -1,12 +1,14 @@
 <ul>
   <li ng-repeat="d in d.s track by $index">
-     <div class="tf-nc" ng-dblclick="node(d);">
+     <div class="tf-nc">
 
-        <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" ng-checked="p(d).o">
+        <div class="custom-control custom-switch"ng-click="req(d);" >
+          <input type="checkbox"
+            class="custom-control-input" ng-checked="p(d).outputs[d.t.out]">
           <label class="custom-control-label">{{d.t.name}}</label>
         </div>
-
+        <div class="material-icons fm" ng-click="node($parent.d.s,$index);">settings</div>
+        
      </div>
      <div ng-if="d.s[0]" ng-include="'tree/rec.htm'">
 

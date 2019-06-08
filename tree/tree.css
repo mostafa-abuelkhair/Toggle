@@ -1,1 +1,12 @@
+.sc {
+    height: auto;
+    max-height: 200px;
+    overflow: scroll;
+}
+.fs{font-size: 11px;}
 
+.fm{font-size: 20px;}
+
+.tf-tree .tf-nc{
+  border-style: none;
+}
