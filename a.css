@@ -21,12 +21,12 @@ nav li {
   cursor: pointer;
   color: #EAF4D7;
 }
-.material-icons {font-size:40px;}
+.material-icons {font-size:25px;}
 
 nav li:hover{background-color: #E6751E;}
 
 .fill{width: 100%;}
-.fillv{height: 97vh;}
+.fillv{height: 96vh;}
 .left{margin-left:0;}
 .f-right{float: right;}
 .clickable{cursor: pointer;}
@@ -92,8 +92,8 @@ transform: scale(0.1,0.1);
 }
 
 ::-webkit-scrollbar {
-    width: 3px;  /* remove scrollbar space */
-
+    width: 1px;  /* remove scrollbar space */
+    height: 1px;
 }
 ::-webkit-scrollbar-thumb {
     background: #E6751E;
