@@ -85,6 +85,27 @@ app.run(function($rootScope) {
       }
 
       $rootScope.search($rootScope.key);
+
+
+      $rootScope.swhICOS=['outlet.png','washer.png','plug.png','fan1.png']
+
+      $rootScope.swhM=function (k){
+      $('#swhModal').modal('toggle');
+      $rootScope.swhN=$rootScope.swhNG(k);
+      $rootScope.swhICO=$rootScope.swhICOG(k);
+      $rootScope.swhK=k;
+      }
+
+      $rootScope.swhS=function (){
+      $('#swhModal').modal('toggle');
+      $rootScope.lss($rootScope.p.id+'/'+$rootScope.swhK+'/n',$rootScope.swhN);
+      $rootScope.lss($rootScope.p.id+'/'+$rootScope.swhK+'/ico',$rootScope.swhICO);
+      }
+
+      $rootScope.swhNG=function (k){return $rootScope.lsg($rootScope.p.id+'/'+k+'/'+'n');}
+      $rootScope.swhICOG=function (k){return $rootScope.lsg($rootScope.p.id+'/'+k+'/'+'ico');}
+
+
 });
 
 app.controller('ctrl', function($scope,$rootScope) {
@@ -98,6 +119,10 @@ $rootScope.inc=function(x) {
 
 };
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+});
 
 
 });
