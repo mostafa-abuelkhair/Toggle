@@ -50,6 +50,7 @@ if($scope.con(d)){
 }
 
 $scope.st=function(d){
+if($scope.con(d)){
 
   if(d.t.out=='roots'){
     for(var x of d.s){
@@ -57,7 +58,7 @@ $scope.st=function(d){
         var k= $scope.st(x);
         if(k){return k;}
       }
-      else if ($scope.p(x).outputs[x.t.out]){return true;}
+      else if (($scope.p(x)==undefined)? 0:$scope.p(x).outputs[x.t.out]){return true;}
 
     }
     return false;
@@ -67,6 +68,8 @@ $scope.st=function(d){
   return ($scope.p(d).outputs[d.t.out]);
        }
 
+}
+else{return false}
 }
 
 $scope.con=function(d){
