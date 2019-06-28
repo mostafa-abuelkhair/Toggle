@@ -39,6 +39,7 @@ nav li:hover{background-color: #E6751E;}
 .bc-berry{background-color: #1A0D30}
 .bc-white{background-color: white}
 .bc-gray{background-color: gray}
+.bc-lo{background: linear-gradient(to bottom, #cc0000 0%, #ffffff 118%);}
 
 .c-light{color: #EAF4D7}
 .c-green{color: #91BA3F}
