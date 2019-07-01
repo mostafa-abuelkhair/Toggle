@@ -87,12 +87,12 @@ app.run(function($rootScope) {
       $rootScope.search($rootScope.key);
 
 
-      $rootScope.swhICOS=['outlet.png','washer.png','plug.png','fan1.png']
+      $rootScope.swhICOS=['outlet.png','washer.png','plug.png','fan1.png','fan0.png','heater.png','tv.png']
 
       $rootScope.swhM=function (k){
       $('#swhModal').modal('toggle');
-      $rootScope.swhN=$rootScope.swhNG(k);
-      $rootScope.swhICO=$rootScope.swhICOG(k);
+      $rootScope.swhN=$rootScope.swhNG(k,k);
+      $rootScope.swhICO=$rootScope.swhICOG(k,'outlet.png');
       $rootScope.swhK=k;
       }
 
@@ -102,8 +102,14 @@ app.run(function($rootScope) {
       $rootScope.lss($rootScope.p.id+'/'+$rootScope.swhK+'/ico',$rootScope.swhICO);
       }
 
-      $rootScope.swhNG=function (k){return $rootScope.lsg($rootScope.p.id+'/'+k+'/'+'n');}
-      $rootScope.swhICOG=function (k){return $rootScope.lsg($rootScope.p.id+'/'+k+'/'+'ico');}
+      $rootScope.swhNG=function (k,dv){
+        var tmp =$rootScope.lsg($rootScope.p.id+'/'+k+'/'+'n');
+        return (tmp==undefined)? dv:tmp;
+      }
+      $rootScope.swhICOG=function (k,dv){
+        var tmp =$rootScope.lsg($rootScope.p.id+'/'+k+'/'+'ico');
+        return (tmp==undefined)? dv:tmp;
+      }
 
 
 });

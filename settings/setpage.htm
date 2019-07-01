@@ -8,7 +8,7 @@
 </div>
   <input type="text" class="form-control" ng-model="sname">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="sp.querys.fq({ord:'name/'+sname})">save</button>
+    <button class="btn bc-violet c-white" ng-click="sp.querys.fq({ord:'name/'+sname})">save</button>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 </div>
   <input type="text" class="form-control" ng-model="skey">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="sp.querys.fq({ord:'key/'+skey})">save</button>
+    <button class="btn bc-orange c-white" ng-click="sp.querys.fq({ord:'key/'+skey})">save</button>
   </div>
 </div>
 
@@ -28,12 +28,12 @@
 </div>
   <input type="text" class="form-control" ng-model="appass">
   <div class="input-group-append">
-    <button class="btn btn-success" ng-click="sp.querys.fq({ord:'appass/'+appass})">save</button>
+    <button class="btn bc-berry c-white" ng-click="sp.querys.fq({ord:'appass/'+appass})">save</button>
   </div>
 </div>
 
 <div class="s">
-<div> connect unit to wifi network </div>
+<div> connect device to wifi network </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
    <span class="input-group-text">wifi ssid</span>
@@ -47,8 +47,8 @@
   <input type="text" class="form-control" ng-model="wfpass">
 </div>
 
-<button class="btn btn-success" ng-click="sp.querys.fq({ord:'wfset/'+wfssid+','+wfpass});">save</button>
-<div class="st">{{sp.wfstate}}</div>
+<button class="btn bc-green c-white" ng-click="sp.querys.fq({ord:'wfset/'+wfssid+','+wfpass});">save</button>
+<div class="st c-orange">{{sp.wfstate}}</div>
 </div>
 
 

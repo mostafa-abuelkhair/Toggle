@@ -5,7 +5,7 @@
         <div class="custom-control custom-switch"ng-click="req(d);" >
           <input type="checkbox"
             class="custom-control-input" ng-checked="st(d)">
-          <label class="custom-control-label">{{d.t.name}}</label>
+          <label class="custom-control-label {{(d.t.out=='roots')? 'c-violet':'c-berry'}}">{{d.t.name}}</label>
         </div>
         <div class="material-icons fm" ng-click="node($parent.d.s,$index);">settings</div>
         <div class="material-icons fm" ng-if="!(con(d))">sync_disabled</div>
