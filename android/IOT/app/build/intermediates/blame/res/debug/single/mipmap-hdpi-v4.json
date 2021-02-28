@@ -8,7 +8,19 @@
         "source": "F:\\D\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
+        "merged": "D:\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\icot.png",
+        "source": "D:\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-hdpi\\icot.png"
+    },
+    {
         "merged": "F:\\D\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\icot.png",
         "source": "F:\\D\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-hdpi\\icot.png"
+    },
+    {
+        "merged": "D:\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ico.png",
+        "source": "D:\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-hdpi\\ico.png"
+    },
+    {
+        "merged": "D:\\Toggle\\android\\IOT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\Toggle\\android\\IOT\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]

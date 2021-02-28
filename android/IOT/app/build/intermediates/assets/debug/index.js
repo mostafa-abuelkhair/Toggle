@@ -27,6 +27,7 @@ app.run(function($rootScope) {
       $rootScope.products=[];
         var do1 =(d,ipa)=>{
         var obj=JSON.parse(d.replace(/'/g,'"'));
+
          if(obj.rep=='0432'){
            var b = new ajqueue('http://'+ipa);
            function s(d){
@@ -46,6 +47,7 @@ app.run(function($rootScope) {
            b.s=s;
            b.f=f;
            b.fq=function(dob){
+             dob.key=key;
              b.addq({data:dob,success:b.s,error:b.f})
            }
 
@@ -55,6 +57,7 @@ app.run(function($rootScope) {
              }
            obj.querys=b;
            obj.ip=ipa;
+           obj.key=key;
           $rootScope.products.push(obj);
           $rootScope.$apply();
         }
@@ -82,6 +85,33 @@ app.run(function($rootScope) {
       }
 
       $rootScope.search($rootScope.key);
+
+
+      $rootScope.swhICOS=['outlet.png','washer.png','plug.png','fan1.png','fan0.png','heater.png','tv.png']
+
+      $rootScope.swhM=function (k){
+      $('#swhModal').modal('toggle');
+      $rootScope.swhN=$rootScope.swhNG(k,k);
+      $rootScope.swhICO=$rootScope.swhICOG(k,'outlet.png');
+      $rootScope.swhK=k;
+      }
+
+      $rootScope.swhS=function (){
+      $('#swhModal').modal('toggle');
+      $rootScope.lss($rootScope.p.id+'/'+$rootScope.swhK+'/n',$rootScope.swhN);
+      $rootScope.lss($rootScope.p.id+'/'+$rootScope.swhK+'/ico',$rootScope.swhICO);
+      }
+
+      $rootScope.swhNG=function (k,dv){
+        var tmp =$rootScope.lsg($rootScope.p.id+'/'+k+'/'+'n');
+        return (tmp==undefined)? dv:tmp;
+      }
+      $rootScope.swhICOG=function (k,dv){
+        var tmp =$rootScope.lsg($rootScope.p.id+'/'+k+'/'+'ico');
+        return (tmp==undefined)? dv:tmp;
+      }
+
+
 });
 
 app.controller('ctrl', function($scope,$rootScope) {
@@ -95,6 +125,10 @@ $rootScope.inc=function(x) {
 
 };
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+});
 
 
 });

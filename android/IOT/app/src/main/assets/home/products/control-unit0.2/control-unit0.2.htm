@@ -8,20 +8,20 @@
 </div>
 
 <div class="container-fluid">
+
   <div class="row" ng-repeat="x in p.swhs track by $index">
 
 <input class="col-5 na bg-light" type="text" name="firstname" ng-model="names[$index]" ng-change="nc($index)" value ="" >
 <div class="col-2 fc"><div class="{{p.fb[$index]==1?'led-lgreen':'led-yellow'}} fb"></div></div>
 
-  <div class="toggle-body {{x==1?'toggle-body--on':''}}" ng-click="p.querys.addq({data:{ord:'ch'+($index+1)+'/'+(x?0:1)}})">
+  <div class="toggle-body {{x==1?'toggle-body--on':''}}" ng-click="p.querys.fq({ord:'ch'+($index+1)+'/'+(x?0:1)})">
     <div class="toggle-btn {{x==1?'toggle-btn--on':''}}"></div>
   </div>
-
-
 
   </div>
 
     </div>
+    
 
     <div class="d-flex justify-content-center foo ">
 

@@ -1,29 +1,33 @@
 <div class="container-fluid">
 
-<div class="product row product" ng-repeat="x in products" ng-click="inc(x);">
-  <div class="col-12">
+  <div class="product row product" ng-repeat="x in products" ng-click="inc(x);">
+    <div class="col-12">
+      <img src="icons/{{x.pid}}.png" />
+    <span class="spa">
+      {{x.name}}
+    </span>
 
-  <h1>{{x.name}}</h1>
-  <p>
-    <span class="">{{x.pid}}</span> <span class="f-right">ip : {{x.ip}}</span>
-  </p>
+  </div>
+  </div>
 
-</div>
-</div>
 </div>
 
 <style>
+
+.spa{
+    font-size: 25px;
+    margin: 10px;
+}
+
 .product{
-  background-color: #91BA3F;
+  background-color: transparent;
   color: #1A0D30;
   cursor: pointer;
   transform: rotateZ(0.5deg);
   margin: 2vw;
   border-style: outset;
-  border-color: #EAF4D7;
+  border-bottom-color: #E6751E;
   box-shadow: 5px 5px 5px grey;
 }
-
-.search{margin :2vh}
 
 </style>
