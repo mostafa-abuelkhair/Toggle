@@ -1,3 +1,3 @@
 # Toggle
 
-iot app to work with esp8266
+IOT app to work with esp8266
